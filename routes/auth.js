@@ -20,8 +20,10 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ error: "El correo ya está registrado" });
     }
 
+    /* hash de contraseña */
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    /* Creación del usuario en DB */
     await prisma.user.create({
       data: { email, password: hashedPassword },
     });
@@ -53,4 +55,13 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Error en el servidor" });
   }
+});
+
+router.post("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.json({ message: "Sesión cerrada" });
+});
+
+router.get("/protected", authMiddleware, (req, res) => {
+  res.json({ message: "Bienvenido a la ruta protegida" });
 });
