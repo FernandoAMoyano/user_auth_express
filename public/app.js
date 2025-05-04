@@ -19,6 +19,14 @@ document
           .json()
           .catch(() => ({ error: "Error desconocido" }));
         alert(errorData.error || "Error desconocido");
+
+        return;
       }
-    } catch (error) {}
+
+      const data = await res.json();
+      alert(data.message);
+    } catch (error) {
+      console.error("Error al registrar usuario", error);
+      alert("Error al registrar usuario");
+    }
   });
