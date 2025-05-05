@@ -30,3 +30,30 @@ document
       alert("Error al registrar usuario");
     }
   });
+
+/* Login */
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("registerEmail").value;
+  const password = document.getElementById("registerPassword").value;
+
+  try {
+    const res = await fetch("http://localhost:3000/auth/register", {
+      method: POST,
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (res.ok) {
+      alert(data.message);
+      window.location.href = "/protected";
+    } else {
+      alert(data.error);
+    }
+
+    const data = await res.json();
+  } catch (error) {
+    alert("Error al iniciar sesion");
+  }
+});
