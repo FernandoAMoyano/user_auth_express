@@ -13,13 +13,11 @@ export const loginController = async (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: "credenciales invalidas" });
     }
-
-    /* Firmar token */
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-
-    /* Se establece el token en la cookie */
     res.cookie("token", token, { httpOnly: true });
-    res.json({ message: "Inicio de session exitoso" });
+    return res
+      .status(200)
+      .json({ message: "Inicio de session exitoso", username: user.username });
   } catch (error) {
     res.status(500).json({ error: "Error en el servidor" });
   }

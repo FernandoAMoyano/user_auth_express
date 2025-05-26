@@ -5,7 +5,14 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.js";
 
 const app = express();
-app.use(cors({ origin: "http://127.0.0.1:5500", credentials: true }));
+
+// Configuración de CORS para Live Server en el puerto 5500
+app.use(
+  cors({
+    origin: ["http://127.0.0.1:5500", "http://localhost:5500"],
+    credentials: true,
+  })
+);
 
 //  carpeta "public" como raíz de los archivos estáticos
 app.use(express.static("public"));
