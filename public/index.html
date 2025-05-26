@@ -9,8 +9,13 @@
   <body>
     <div id="form-container">
       <!-- Formulario de Registro -->
-      <form id="registerForm">
+      <form id="registerForm" style="display: none">
         <h1>Registro</h1>
+        <input
+          type="text"
+          id="registerUsername"
+          placeholder="Nombre de usuario"
+          required />
         <input
           type="email"
           id="registerEmail"
@@ -21,20 +26,24 @@
           id="registerPassword"
           placeholder="Contraseña"
           required />
+
         <button type="submit">Registrarse</button>
+
+        <p>¿Ya tienes cuenta?</p>
+        <a href="#" id="showLogin">Iniciar Sesion</a>
       </form>
 
       <!-- Formulario de inicio de sesion -->
-      <form>
+      <form id="loginForm">
         <h1>Inicio de Sesion</h1>
         <input
           type="email"
-          id="registerEmail"
+          id="loginEmail"
           placeholder="Correo Electrónico"
           required />
         <input
           type="password"
-          id="registerPassword"
+          id="loginPassword"
           placeholder="Contraseña"
           required />
         <button type="submit">Iniciar Sesion</button>
@@ -42,5 +51,6 @@
         <a href="#" id="showRegister">Registrarse</a>
       </form>
     </div>
+    <script src="./main.js"></script>
   </body>
 </html>

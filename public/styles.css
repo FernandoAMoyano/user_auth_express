@@ -68,6 +68,10 @@ form h1 {
   color: #ca7f0e;
 }
 
+#showLogin {
+  color: #ca7f0e;
+}
+
 #form-container {
   width: 100%;
   max-width: 400px;

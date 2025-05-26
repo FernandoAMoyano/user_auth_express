@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
 export const registerController = async (req, res) => {
   console.log("Solicitud recibida en /auth/register:", req.body);
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
 
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -18,7 +19,7 @@ export const registerController = async (req, res) => {
 
     /* Creación del usuario en DB */
     await prisma.user.create({
-      data: { email, password: hashedPassword },
+      data: { email, password: hashedPassword, username },
     });
 
     res.status(201).json({ message: "Usuario registrado exitosamente" });
